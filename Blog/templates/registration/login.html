@@ -1,0 +1,43 @@
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+
+
+<div class="body">
+    <div class="head">
+      <i class="fas fa-graduation-cap"></i>
+      <div class="title"> Student's Portal</div>
+    </div>
+    <div class="container">
+      <div class="profile-items">
+          <i class="far fa-user-circle"></i>
+          <h1>Login</h1>
+          <p>Log In to Your SPA Account!</p>
+      </div>
+       <div>
+      
+       </div>
+      <form class="form" method="post" action="">
+          {% csrf_token %}
+          {% if form.errors %}
+            <p class="error">Your username and password didn't match. Please try again.</p>
+          {% endif %}
+          <div class="form-items">
+            {% for field in form %}
+              <div class="items">
+                <i class="fas fa-envelope"></i>
+                {{field}}
+              </div>
+            {% endfor %}
+              <div class="submit">
+                  <button type="submit">Login</button>
+              </div>
+              
+              <div class="login">
+                  <p>Don't have an account?<a href=""> Sign Up.</a> <br> or <a href="">Forgot Password?</a></p>
+              </div>
+          </div>
+      </form>
+    </div>
+  </div>

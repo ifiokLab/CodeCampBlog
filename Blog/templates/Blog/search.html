@@ -1,0 +1,181 @@
+{% extends 'Blog/index.html'%}
+{% load static %}
+{% block extrahead %}
+{% endblock %}
+
+
+{% block content %}
+<!--Hero Area Starts-->
+<section class="hero-section">
+    <div class="mySlides fade">
+        <img src="{% static 'images/1.jpg'%}" alt="">
+        <div class="feature-text-wrapper">
+            <div class="feature-text">
+                <h2>ReactJS Portfolio website</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia <br> eveniet accusamus odio autem possimus nostrum?</p>
+                <a class="feature-post-btn" href="blog-details.html">Learn More</a>
+            </div>
+        </div>
+    </div>
+    <div class="mySlides fade">
+        <img src="{% static 'images/2.jpg'%}" alt="Hero">
+        <div class="feature-text-wrapper">
+            <div class="feature-text">
+                <h2>ReactJS Portfolio website</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia <br> eveniet accusamus odio autem possimus nostrum?</p>
+                <a class="feature-post-btn" href="blog-details.html">Learn More</a>
+            </div>
+        </div>
+    </div>
+    <div class="mySlides fade">
+        <img src="{% static 'images/3.jpg'%}" alt="Hero">
+        <div class="feature-text-wrapper">
+            <div class="feature-text">
+                <h2>ReactJS Portfolio website</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia <br> eveniet accusamus odio autem possimus nostrum?</p>
+                <a class="feature-post-btn" href="blog-details.html">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+ <!--Hero ends Starts-->
+<!--Main Area starts-->
+<section class="main-area-container">
+    <div class="main-area-wrapper">
+        <div class="blog-container">
+            {% if query %}
+            <h1 style="margin-bottom: 10px;">You Searched for "{{query}}"</h1>
+            <div class="blog-container-wrapper">
+                {% for data in posts %}
+                    <div class="blog-card">
+                        <img class="card-image" src="{{data.image.url}}" alt="">
+                        <div class="blog-item">
+                            <div class="blog-list-meta">
+                                <a class="blog-author" href="#">
+                                    <img src="{{data.author.image.url}}" alt="Blog Author">
+                                    <span>{{data.author}}</span>
+                                </a>
+                                <a class="blog-category" href="#">{{data.category}}</a>
+                            </div>
+                            <div class="blog-text">
+                                <h3>{{data.title}}</h3>
+                                <p>{{ data.body|safe|truncatechars:100 }}</p>
+                                <a class="blog-list-btn" href="#">Read More...</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                
+            </div>
+           
+            {% else %}
+            <h1>Hey! You forgot to search for a Post.....</h1>
+            {% endif %}
+        </div>
+        <div class="blog-sidebar">
+            <div class="sidebar-container-1">
+                <div class="blog-search-sidebar">
+                    <form action="{% url 'Search_Result' %}" method="POST">
+                        {% csrf_token %}
+                        <input name="query" type="search" placeholder="Search Blog Post" >
+                        <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="sidebar-widget recent-post">
+                    <h3>Recent Post</h3>
+                    {% for data in recent_posts %}
+                        <div class="single-recent-post">
+                            <a href="blog-details.html">
+                                <img src="{{ data.image.url }}" alt="Recent Post">
+                                <span>{{data.title}}</span>
+                            </a>
+                        </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+            <div class="sidebar-container-2">
+                <div class="blog-category-list">
+                    <h3>Blog Category list</h3>
+                    <ul>
+                        <li><a href="#">ReactJS</a></li>
+                        <li><a href="#">NodeJS</a></li>
+                        <li><a href="#">WordPress</a></li>
+                        <li><a href="#">HTML & CSS</a></li>
+                        <li><a href="#">TailwindCSS</a></li>
+                    </ul>
+                </div>
+
+                <div class="blog-archive-list">
+                    <h3>Blog Archive</h3>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span class="archive-date">January 2022</span>
+                                <span class="archive-post-number">3</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="archive-date">February 2022</span>
+                                <span class="archive-post-number">4</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="archive-date">March 2022</span>
+                                <span class="archive-post-number">7</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="archive-date">April 2022</span>
+                                <span class="archive-post-number">6</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="archive-date">May 2022</span>
+                                <span class="archive-post-number">5</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Main Area Ends -->
+
+
+<!--Recomeneded Post-->
+<section class="recommended-area-container">
+    <div class="recommended-area-wrapper">
+        <h2>Recomeneded Post</h2>
+        <div class="recommended-container-wrapper">
+                    {% for data in recent_posts %}
+                    <div class="blog-card">
+                        <img class="card-image" src="{{data.image.url}}" alt="">
+                        <div class="blog-item">
+                            <div class="blog-list-meta">
+                                <a class="blog-author" href="#">
+                                    <img src="{{data.author.image.url}}" alt="Blog Author">
+                                    <span>{{data.author}}</span>
+                                </a>
+                                <a class="blog-category" href="#">{{data.category}}</a>
+                            </div>
+                            <div class="blog-text">
+                                <h3>{{data.title}}</h3>
+                                <p>{{ data.body|safe|truncatechars:100 }}</p>
+                                <a class="blog-list-btn" href="{% url 'Post_Detail' data.id %}">Read More...</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+    </div>
+</section>
+<!--Recomeneded Post ends-->
+{% endblock %}

@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block extrahead %}
+    {% endblock %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body >
+    <!--Preloader Starts-->
+   <!--
+     <div class="preloader-wrapper">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+   -->
+    <!--Preloader Ends-->
+    <!-- Header Area Start -->
+    <header class="header-area">
+        <div class="container">
+            <div class="logo">
+                <div class="menu--button">
+                    <button onclick="ToggleMobileNavigation()"><i class="fa-solid fa-bars"></i></i></button>
+                </div>
+                <a href="">Blog</a>
+            </div>
+            <div class="nav-block">
+                <div class="navigation--item">
+                   <a href="">Python</a>
+                    <a href="">NodeJS</a>
+                    <a href="">UI & UX</a>
+                    <a href="">Django</a>
+                    <a href="">Hello {{user.first_name}}</a>
+                </div>
+
+                <div class="blog-search">
+                    <form action="{% url 'Search_Result' %}" method="POST">
+                        {% csrf_token %}
+                        <input name="query" type="search" placeholder="Search Blog Post" >
+                        <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </header>
+    <!-- Header Area Ends -->
+    <!--Mobile Navigation starts-->
+    <div class="mobile--navigation" id="mobile--navigation">
+        <div class="mobile--navigation-header">
+            <div class="logo-container">
+                <img src="" alt="">
+                <a href="">Blog</a>
+            </div>
+            <div class="close--button">
+                <button onclick="ToggleMobileNavigation()"><i class="fa fa-close"></i></button>
+            </div>
+        </div>
+        <div class="mobile--navigation--items">
+            <a href="" class="mobile--navigation--item">Home</a>
+            <a href="" class="mobile--navigation--item">About</a>
+            <a href="" class="mobile--navigation--item">Services</a>
+            <a href="" class="mobile--navigation--item">Contact</a>
+        </div>
+    </div>
+    <!--Mobile Navigation ends-->
+    {% block content %}
+    {% endblock %}
+     <!--footer Area starts-->
+     <footer class="footer-area">
+        <div class="footer-container">
+            <div class="copyright-text">
+                <p>All Rights Reserved &copy CodeCamp 2022</p>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+     </footer>
+      <!--footer Area ends-->
+</body>
+<script src="{% static 'javascript/home.js' %}"></script>
+</html>

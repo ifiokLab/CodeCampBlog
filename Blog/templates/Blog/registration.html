@@ -1,0 +1,58 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a0903f3219.js" crossorigin="anonymous"></script>
+
+
+
+<div class="body">
+    
+    <div class="container">
+        <div class="profile-items">
+            <i class="far fa-user-circle"></i>
+            <h1>Sign Up</h1>
+            <p>Sign Up and Start Learning!</p>
+        </div>
+        <form class="form" action="" method="POST">
+            {% csrf_token %}
+            {% if form.errors %}
+               {% for error in form.error_messages%}
+                    <p style="color: red;font-size: 1.6rem;">{{error}}</p>
+                {% endfor %}
+            {% endif %}
+            <div class="form-items">
+                <div class="items">
+                    <i class="fas fa-envelope"></i>
+                    {{form.email}}
+                </div>
+                <div class="items">
+                    <i class="fas fa-user"></i>
+                    {{form.first_name}}
+                </div>
+                <div class="items">
+                    <i class="fas fa-user"></i>
+                    {{form.last_name}}
+                </div>
+                
+                <div class="items">
+                    <i class="fas fa-lock"></i>
+                    {{form.password1}}
+                </div>
+                <div class="items">
+                    <i class="fas fa-lock"></i>
+                    {{form.password2}}
+                </div>
+               
+                <div class="submit">
+                    <button type="submit">Sign Up</button>
+                </div>
+                <div>
+                    <p>By signing up, you agree to our <a href="">Terms of Use</a> and <a href="">Privacy Policy</a>.</p>
+                </div>
+                <div class="login">
+                    <p>Already have an account? <a href="">Log In</a></p>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>
